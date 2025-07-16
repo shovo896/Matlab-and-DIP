@@ -1,0 +1,10 @@
+j = imread("1-300x243.png");
+j1 = rgb2gray(j);
+n = 25 * randn(size(j1));
+j2 = n + double(j1);
+imtool(j,[]);
+imtool(j1,[]);
+imtool(j2,[]);
+Lap=[0 -1 0 ; -1 4 -1 ; 0 -1 0];
+j3 = conv2(j2,Lap,'same');
+imtool(abs(j3),[]);
