@@ -1,0 +1,10 @@
+clc ;
+close all;
+clear all ;
+im=imread("1-300x243.png");
+imflat=double(reshape(im,size(im,1)*size(im,2),3));
+k=3 ;
+[KIDs,kC]=kmeans(imflat,k,'Display','iter','MaxIter',150,'Start','Sample');
+colormap=kC/256;
+imout=reshape(unit8(kIDs,size(im,1),size(im,2)));
+imwrite(imout-1,colormap,'1-300x243.png');

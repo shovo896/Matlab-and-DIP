@@ -1,0 +1,13 @@
+j = imread("1-300x243.png");
+j1 = rgb2gray(j);
+n = 25*randn(size(j1));
+j2 = n + double(j1);
+imtool(j,[]);
+imtool(j1,[]);
+imtool(j2,[]);
+Gaussian=fspecial('gaussian',5,1);
+Lap=[0 -1 0 ; -1 4 1 ; 0 -1 0];
+j4 = conv2(j2,Gaussian,'same');
+j5 = conv(j4,Lap,'same');
+imtool(j4,[]);
+imtool(j5,[]);
