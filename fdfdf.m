@@ -1,0 +1,5 @@
+plot([0 5],[1 5])
+title('Stright line')
+subtitle('Slope=5,y-Intercept=1')
+xlabel('X scale')
+ylabel('Y scale')
