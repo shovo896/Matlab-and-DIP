@@ -1,0 +1,27 @@
+clc ;
+close all ;
+clear ;
+Fs = 1000;
+Fp = 100 ;
+Fst = 150 ;
+Rp = 1 ;
+Rs = 40 ;
+Wp = Fp /(Fs/2);
+Wst = Fst/ (Fs/2);
+[n_butt,Wn_butt]= buttord(Wp,Wst,Rp,Rs);
+[n_cheby,Wn_cheby]=cheb1ord(Wp,Wst,Rp,Rs);
+[b_butt,a_butt]=butter(n_butt,Wn_butt,'low');
+[b_cheby,a_cheby]=cheby1(n_cheby,Rp,Wn_cheby,'low');
+
+[H_butt,f]=freqz(b_butt,a_butt,1024,Fs);
+[H_cheby,~]= freqz(b_cheby,a_cheby,1024,Fs);
+figure('Position',[100,100,800,600]);
+subplot(2,1,1);
+plot(f,20*log10(abs(H_butt)),'b-','LineWidth',2);
+hold on ;
+plot(f,20*log10(abs(H_cheby)),'r--','LineWidth',2);
+grid on ;
+title('Frequency response : Butterworth vs Chebyshev');
+xlabel('Frequency');
+ylabel('Magnitude (dB)');
+ylim([-80 5]);
